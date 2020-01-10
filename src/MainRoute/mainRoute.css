@@ -1,0 +1,25 @@
+h2 {
+  text-align: center;
+}
+.mainPage {
+  display: flex;
+}
+
+folders {
+  flex: 1;
+  margin-left: 40px;
+
+}
+.folder-list {
+  marging-bottom: 50px;
+}
+
+.notes {
+  flex: 3;
+  margin-left: 60px;
+ justify-content: flex-end;
+}
+
+li {
+    list-style: none;
+}
