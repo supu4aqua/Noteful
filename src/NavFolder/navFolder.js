@@ -3,12 +3,14 @@ import dummyStore from '../dummy-store';
 import {Route, Link} from 'react-router-dom';
 import './navFolder.css';
 import NavBar from '../NavBar/navBar';
+import Context from '../Context';
 
-export default function NavFolder(props) {
-
-
-  const notes = props.notes.filter(note => {
-    return note.folderId === props.match.params.id
+//export default function NavFolder(props) {
+class NavFolder extends Component {
+static contextType = Context;
+render() {
+  const notes = this.context.notes.filter(note => {
+    return note.folderId === this.props.match.params.id
   }).map( note => {
     return (
           <li key={note.id}>
@@ -21,11 +23,11 @@ export default function NavFolder(props) {
 
   return(
       <div>
-      <NavBar folders={props.folders}/>
+      <NavBar folders={this.context.folders}/>
       <ul>{notes}</ul></div>
 
   )
-
+}
 }
 
-//
+export default NavFolder;
