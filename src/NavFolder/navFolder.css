@@ -1,0 +1,36 @@
+.mainPage {
+  display: flex;
+  font-family: Oldtown, fantasy;
+}
+
+.notes {
+  flex: 3;
+  margin-right: 20px;
+  justify-content: flex-end;
+}
+
+li {
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+li p {
+  font-size: 15px;
+
+}
+
+.delete-note {
+  height: 40px;
+  width: 40px;
+  background: url("../Delete.jpeg") no-repeat;
+  background-size: 40px auto;
+  border: none;
+
+}
+
+.folderError {
+  text-align: center;
+  font-family: Oldtown, fantasy;
+  font-size: 20px;
+  font-weight: bold;
+}

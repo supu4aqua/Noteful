@@ -1,68 +1,77 @@
-import React, {Component} from 'react';
-import dummyStore from '../dummy-store';
-import {Route, Link} from 'react-router-dom';
-import './mainRoute.css';
-import NavFolder from '../NavFolder/navFolder';
-import NavNote from '../NavNote/navNote';
-import NavBar from '../NavBar/navBar';
-import Context from '../Context';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./mainRoute.css";
+import NavBar from "../NavBar/navBar";
+import Context from "../Context";
 
-
+//Renders a lost of all the notes on the main page
 class MainRoute extends Component {
-static contextType = Context;
-
-deleteNoteRequest(noteId, callback) {
-  fetch(`http://localhost:9090/notes/${noteId}`, {
-    method: 'DELETE',
-  })
-    .then(res => {
-      if (!res.ok) {
-        // get the error message from the response,
-        return res.json().then(error => {
-          // then throw it
-          throw error
-        })
-      }
-      return res.json()
+  static contextType = Context;
+//When delete note button is clciked
+  deleteNoteRequest(noteId, callback) {
+    fetch(`http://localhost:9090/notes/${noteId}`, {
+      method: "DELETE"
     })
-    .then(data => {
-      // call the callback when the request is successful
-      // this is where the App component can remove it from state
-      callback(noteId)
-    })
-    .catch(error => {
-      console.error(error)
-    })
-}
+      .then(res => {
+        if (!res.ok) {
+          // get the error message from the response,
+          return res.json().then(error => {
+            // then throw it
+            throw error;
+          });
+        }
+        return res.json();
+      })
+      .then(data => {
+        // call the callback when the request is successful
+        // this is where the App component can remove it from state
+        callback(noteId);
+      })
 
-render() {
-//console.log(this.context);
-  const notes = this.context.notes.map( note =>
-      <li key={note.id}>
-          <Link to={`/note/${note.id}`}>{note.name} </Link>
-          <p>Modified on - {note.modified}</p>
-          <button onClick={() => {
-                this.deleteNoteRequest(
-                  note.id,
-                  this.context.deleteNote,
-               )
-              }}>DeleteNote</button>
-        </li>
-  )
-
-  return (
-    <div className="mainPage">
-  <NavBar folders={this.context.folders}/>
-      <div className="notes">
-        <div className="notes-list">
-            <ul>{notes}</ul>
-        </div>
-        <button>Add note</button>
-        </div>
-    </div>
-    );
+      .catch(error => {
+        console.error(error);
+      });
   }
 
+  render() {
+    const notes = this.context.notes.map(note => (
+      <li key={note.id}>
+        <Link
+          to={`/note/${note.id}`}
+          style={{
+            color: "00FFFF",
+            textDecoration: "none",
+            fontWeight: "bold",
+            fontSize: "20px"
+          }}
+        >
+          {note.name}{" "}
+        </Link>
+        <p>Modified on - {note.modified}</p>
+        <button title="Delete Note" className="delete-note"
+          onClick={() => {
+            this.deleteNoteRequest(note.id, this.context.deleteNote);
+          }}
+        >
+        </button>
+      </li>
+    ));
+
+    return (
+      <div className="mainPage">
+        <NavBar />
+        <div className="notes">
+          <div className="notes-list">
+            <ul>{notes}</ul>
+          </div>
+
+          <Link to="/add-note">
+            <button title="Add Note" className="add-note"></button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default MainRoute;

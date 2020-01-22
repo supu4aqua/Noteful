@@ -1,0 +1,48 @@
+select {
+  margin-bottom: 40px;
+  font-size: 20px;
+  /*width: 30%;*/
+  margin-bottom: 40px;
+  border: 2px solid red;
+  border-radius: 4px;
+  padding: 10px;
+  font-family: inherit;
+}
+
+label, input {
+  font-family: inherit;
+
+}
+
+/*.addform {
+  max-width: 320px;
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid rgba(2, 1, 10, 1);
+  padding: 5px;
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 1);
+  box-shadow: 3px 2px 2px rgba(2, 1, 10, .6);
+  font-weight: bold;
+  margin-top: 15px;
+  background-color: #2E4052;
+  padding: 15px;
+  font-size: 14px;
+}
+*/
+.addform div, .addform select {
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+}
+/*
+.addbutton {
+  align-items: center;
+}
+*/
+/*label {
+  font-size: .95em;
+  margin-right: 10px;
+  width: 50%;
+  text-align: left;
+}*/

@@ -1,11 +1,29 @@
-.content {
-  text-align: justify;
-}
+
 
 p {
-  text-align: center;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 .note-details {
+  display: flex;
   margin-left: 30px;
+  margin-right: 30px;
+  font-family: Oldtown, fantasy;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+h2 {
+  color: green;
+  font-weight: bold;
+  font-size: 30px;
+  font-family: Oldtown, fantasy;
+}
+
+.noteError {
+  text-align: center;
+  font-family: Oldtown, fantasy;
+  font-size: 20px;
+  font-weight: bold;
 }

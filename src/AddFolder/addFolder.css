@@ -1,0 +1,46 @@
+.go-back {
+  height: 60px;
+  width: 80px;
+  background: url("../BackButton.png") no-repeat;
+  background-size: 60px auto;
+  border: none;
+  margin-left: 50px;
+}
+
+.addform div {
+  font-family: Oldtown, fantasy;
+  /*display: flex;
+  flex-direction: column;*/
+}
+
+
+
+.addbutton {
+  font-family: Arial, sans-serif;
+  margin-bottom: 50px;
+  border-radius: 8px;
+  border: 2px solid black;
+  background-color: #4CAF50;
+  color: white;
+  width: 150px;
+  padding: 8px;
+}
+
+h2 {
+  margin-bottom: 50px;
+}
+
+label {
+ margin-right: 20px;
+  font-weight: bold;
+  /*align-self: flex-start*/
+}
+
+input {
+
+  margin-bottom: 40px;
+  border: 2px solid red;
+  border-radius: 4px;
+  padding: 8px;
+  font-size: 20px;
+}

@@ -1,18 +1,49 @@
 h2 {
   text-align: center;
 }
+
 .mainPage {
   display: flex;
+  font-family: Oldtown, fantasy;
 }
-
-
 
 .notes {
   flex: 3;
-  margin-left: 60px;
- justify-content: flex-end;
+  margin-right: 20px;
+  justify-content: flex-end;
 }
 
 li {
-    list-style: none;
+  list-style: none;
+  margin-bottom: 30px;
+}
+
+li p {
+  font-size: 15px;
+
+}
+
+button {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.delete-note {
+  height: 40px;
+  width: 40px;
+  background: url("../Delete.jpeg") no-repeat;
+  background-size: 40px auto;
+  border: none;
+  margin: auto;
+  display: block;
+}
+
+.add-note {
+  height: 70px;
+  width: 100px;
+  background: url("../AddNote.png") no-repeat;
+  background-size:70px auto;
+  border: none;
+  margin-left: 100px;
+
 }
