@@ -5,6 +5,33 @@ import Context from "../Context";
 //Renders details of selected note
 class NavNote extends Component {
   static contextType = Context;
+
+  deleteNoteRequest(noteId, callback) {
+    fetch(`http://localhost:9090/notes/${noteId}`, {
+      method: "DELETE"
+    })
+      .then(res => {
+        if (!res.ok) {
+          // get the error message from the response,
+          return res.json().then(error => {
+            // then throw it
+            throw error;
+          });
+        }
+        return res.json();
+      })
+      .then(data => {
+        // call the callback when the request is successful
+        // this is where the App component can remove it from state
+        callback(noteId);
+        this.props.history.push("/");
+      })
+
+      .catch(error => {
+        console.error(error);
+      });
+  }
+
   render() {
     const note = this.context.notes.find(
       note => note.id === this.props.match.params.id
@@ -23,6 +50,12 @@ class NavNote extends Component {
         <h2>{note.name}</h2>
         <p>Modified on {note.modified}</p>
         <p className="content">{note.content}</p>
+        <button title="Delete Note" className="delete-note"
+          onClick={() => {
+            this.deleteNoteRequest(note.id, this.context.deleteNote);
+          }}
+        >
+        </button>
       </div>
     );
   }

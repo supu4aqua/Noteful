@@ -34,13 +34,43 @@ class NavFolder extends Component {
       });
   }
 
+/*componentDidMount(){
+  const folder = this.context.folders.find(
+      folder => folder.id === this.props.match.params.id
+    );
+    console.log(folder);
+   if (!folder) {
+      return <p className="folderError">FOLDER NOT FOUND!!! </p>;
+    }
+}*/
+
   render() {
-  const folder = this.context.notes.find(
+    const folder = this.context.folders.find(
+        folder => folder.id === this.props.match.params.id
+      );
+      console.log(folder);
+     if (!folder) {
+        return <p className="folderError">FOLDER NOT FOUND!!! </p>;
+      }
+      
+  const note = this.context.notes.find(
     note => note.folderId === this.props.match.params.id
   );
-  if (!folder) {
-    return <p className="folderError">FOLDER NOT FOUND!!! </p>;
+  if (!note) {
+    return (
+      <div className="mainPage">
+        <NavBar />
+        <div className="notes">
+          <div className="folderError">
+            <p>FOLDER EMPTY</p>
+          </div>
+
+        </div>
+      </div>
+    );
   }
+
+
 
     const notes = this.context.notes
       .filter(note => {
@@ -77,6 +107,9 @@ class NavFolder extends Component {
           <div className="notes-list">
             <ul>{notes}</ul>
           </div>
+          <Link to="/add-note">
+            <button title="Add Note" className="add-note"></button>
+          </Link>
         </div>
       </div>
     );

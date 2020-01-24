@@ -20,7 +20,10 @@ class AddNote extends Component {
     this.setState({ error: null });
     fetch(`http://localhost:9090/notes`, {
       method: "POST",
-      body: JSON.stringify(note)
+      body: JSON.stringify(note),
+      headers: {
+              'content-type': 'application/json'
+              }
     })
       .then(res => {
         if (!res.ok) {

@@ -6,7 +6,7 @@ import Context from "../Context";
 class AddFolder extends Component {
   static contextType = Context;
 
-//When add folder button is clicked
+  //When add folder button is clicked
   handleSubmit = e => {
     e.preventDefault();
     const { name } = e.target;
@@ -17,7 +17,10 @@ class AddFolder extends Component {
     this.setState({ error: null });
     fetch(`http://localhost:9090/folders`, {
       method: "POST",
-      body: JSON.stringify(folder.name)
+      body: JSON.stringify(folder),
+      headers: {
+        "content-type": "application/json"
+      }
     })
       .then(res => {
         if (!res.ok) {
@@ -35,7 +38,7 @@ class AddFolder extends Component {
         //Set data to state
         this.context.addFolder({ id: data.id, name: folder.name });
         name.value = "";
-        this.props.history.push('/')
+        this.props.history.push("/");
       })
       .catch(error => {
         this.setState({ error });
@@ -45,9 +48,15 @@ class AddFolder extends Component {
   render() {
     return (
       <div className="form-folder">
-        <button title="Go back" className="go-back" onClick={() => this.props.history.goBack()}></button>
+        <button
+          title="Go back"
+          className="go-back"
+          onClick={() => this.props.history.goBack()}
+        ></button>
         <form className="addform" onSubmit={this.handleSubmit}>
-          <div><h2>Create a folder</h2></div>
+          <div>
+            <h2>Create a folder</h2>
+          </div>
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input
@@ -58,9 +67,11 @@ class AddFolder extends Component {
               required
             />
           </div>
-          <div><button type="submit" className="addbutton">
-            Add folder
-          </button></div>
+          <div>
+            <button type="submit" className="addbutton">
+              Add folder
+            </button>
+          </div>
         </form>
       </div>
     );
