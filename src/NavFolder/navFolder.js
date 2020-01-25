@@ -34,7 +34,7 @@ class NavFolder extends Component {
       });
   }
 
-/*componentDidMount(){
+  /*componentDidMount(){
   const folder = this.context.folders.find(
       folder => folder.id === this.props.match.params.id
     );
@@ -46,31 +46,31 @@ class NavFolder extends Component {
 
   render() {
     const folder = this.context.folders.find(
-        folder => folder.id === this.props.match.params.id
-      );
-      console.log(folder);
-     if (!folder) {
-        return <p className="folderError">FOLDER NOT FOUND!!! </p>;
-      }
-      
-  const note = this.context.notes.find(
-    note => note.folderId === this.props.match.params.id
-  );
-  if (!note) {
-    return (
-      <div className="mainPage">
-        <NavBar />
-        <div className="notes">
-          <div className="folderError">
-            <p>FOLDER EMPTY</p>
-          </div>
-
-        </div>
-      </div>
+      folder => folder.id === this.props.match.params.id
     );
-  }
+    console.log(folder);
+    if (!folder) {
+      return <p className="folderError">FOLDER NOT FOUND!!! </p>;
+    }
 
-
+    const note = this.context.notes.find(
+      note => note.folderId === this.props.match.params.id
+    );
+    if (!note) {
+      return (
+        <div className="mainPage">
+          <NavBar />
+          <div className="notes">
+            <div className="folderError">
+              <p>FOLDER EMPTY</p>
+              <Link to="/add-note">
+                <button title="Add Note" className="add-note"></button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      );
+    }
 
     const notes = this.context.notes
       .filter(note => {
@@ -91,14 +91,16 @@ class NavFolder extends Component {
               {note.name}{" "}
             </Link>
             <p>Modified on - {note.modified}</p>
-            <button title="Delete Note" className="delete-note" onClick={() => {
-              this.deleteNoteRequest(note.id, this.context.deleteNote);
-            }}></button>
+            <button
+              title="Delete Note"
+              className="delete-note"
+              onClick={() => {
+                this.deleteNoteRequest(note.id, this.context.deleteNote);
+              }}
+            ></button>
           </li>
         );
       });
-
-
 
     return (
       <div className="mainPage">

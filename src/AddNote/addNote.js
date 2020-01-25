@@ -6,7 +6,7 @@ import Context from "../Context";
 class AddNote extends Component {
   static contextType = Context;
 
-//When add note button is clicked
+  //When add note button is clicked
   handleSubmit = e => {
     e.preventDefault();
 
@@ -14,7 +14,8 @@ class AddNote extends Component {
     const note = {
       name: name.value,
       folderId: folder.value,
-      content: content.value
+      content: content.value,
+      modified: new Date().toUTCString()
     };
 
     this.setState({ error: null });
@@ -22,8 +23,8 @@ class AddNote extends Component {
       method: "POST",
       body: JSON.stringify(note),
       headers: {
-              'content-type': 'application/json'
-              }
+        "content-type": "application/json"
+      }
     })
       .then(res => {
         if (!res.ok) {
@@ -39,24 +40,25 @@ class AddNote extends Component {
         // call the callback when the request is successful
         // this is where the App component can remove it from state
 
-        this.context.addNote({
+      /*  this.context.addNote({
           id: data.id,
           name: note.name,
           content: note.content,
           folderId: note.folderId,
-          modified: new Date().toUTCString(),
-        });
-        name.value = "";
+          modified: new Date().toUTCString()
+        });*/
+        this.context.addNote(data);
+      /*  name.value = "";
         folder.value = "";
-        content.value = "";
-        this.props.history.push('/')
+        content.value = "";*/
+        this.props.history.push("/");
       })
       .catch(error => {
         this.setState({ error });
       });
   };
 
-//Render all fodlers for select dropdown
+  //Render all fodlers for select dropdown
   RenderFolderList() {
     const list = this.context.folders.map(folder => (
       <option key={folder.id} value={folder.id}>
@@ -69,7 +71,11 @@ class AddNote extends Component {
   render() {
     return (
       <div className="form-note">
-        <button title="Go back" className="go-back" onClick={() => this.props.history.goBack()}></button>
+        <button
+          title="Go back"
+          className="go-back"
+          onClick={() => this.props.history.goBack()}
+        ></button>
         <form className="addform" onSubmit={this.handleSubmit}>
           <h2>Create a note</h2>
           <div className="form-group">
@@ -95,12 +101,14 @@ class AddNote extends Component {
           <div className="form-folders">
             <label htmlFor="folders">Folder </label>
 
-            <select name="folder" required>{this.RenderFolderList()}</select>
+            <select name="folder" required>
+              {this.RenderFolderList()}
+            </select>
           </div>
           <div>
-          <button type="submit" className="addbutton">
-            Add note
-          </button>
+            <button type="submit" className="addbutton">
+              Add note
+            </button>
           </div>
         </form>
       </div>
