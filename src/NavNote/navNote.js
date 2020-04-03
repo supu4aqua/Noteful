@@ -7,7 +7,7 @@ class NavNote extends Component {
   static contextType = Context;
 
   deleteNoteRequest(noteId, callback) {
-    fetch(`http://localhost:9090/notes/${noteId}`, {
+    fetch(`http://localhost/8000/api/notes/${noteId}`, {
       method: "DELETE"
     })
       .then(res => {
@@ -50,12 +50,13 @@ class NavNote extends Component {
         <h2>{note.name}</h2>
         <p>Modified on {note.modified}</p>
         <p className="content">{note.content}</p>
-        <button title="Delete Note" className="delete-note"
+        <button
+          title="Delete Note"
+          className="delete-note"
           onClick={() => {
             this.deleteNoteRequest(note.id, this.context.deleteNote);
           }}
-        >
-        </button>
+        ></button>
       </div>
     );
   }

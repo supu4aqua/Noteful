@@ -7,9 +7,9 @@ import Context from "../Context";
 //Renders a lost of all the notes on the main page
 class MainRoute extends Component {
   static contextType = Context;
-//When delete note button is clciked
+  //When delete note button is clciked
   deleteNoteRequest(noteId, callback) {
-    fetch(`http://localhost:9090/notes/${noteId}`, {
+    fetch(`http://localhost:8000/api/notes/${noteId}`, {
       method: "DELETE"
     })
       .then(res => {
@@ -48,12 +48,13 @@ class MainRoute extends Component {
           {note.name}{" "}
         </Link>
         <p>Modified on - {note.modified}</p>
-        <button title="Delete Note" className="delete-note"
+        <button
+          title="Delete Note"
+          className="delete-note"
           onClick={() => {
             this.deleteNoteRequest(note.id, this.context.deleteNote);
           }}
-        >
-        </button>
+        ></button>
       </li>
     ));
 

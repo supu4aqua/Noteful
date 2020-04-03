@@ -10,7 +10,7 @@ class NavFolder extends Component {
 
   //Delete note when button is clicked
   deleteNoteRequest(noteId, callback) {
-    fetch(`http://localhost:9090/notes/${noteId}`, {
+    fetch(`http://localhost:8000/api/notes/${noteId}`, {
       method: "DELETE"
     })
       .then(res => {
