@@ -7,7 +7,7 @@ class NavNote extends Component {
   static contextType = Context;
 
   deleteNoteRequest(noteId, callback) {
-    fetch(`http://localhost/8000/api/notes/${noteId}`, {
+    fetch(`http://localhost:8000/api/notes/${noteId}`, {
       method: "DELETE"
     })
       .then(res => {
@@ -18,13 +18,14 @@ class NavNote extends Component {
             throw error;
           });
         }
-        return res.json();
+      //  console.log(res);
+        return 'Note Deleted';
       })
       .then(data => {
         // call the callback when the request is successful
         // this is where the App component can remove it from state
         callback(noteId);
-        this.props.history.push("/");
+      //  this.props.history.push("/");
       })
 
       .catch(error => {
@@ -34,7 +35,7 @@ class NavNote extends Component {
 
   render() {
     const note = this.context.notes.find(
-      note => note.id === this.props.match.params.id
+      note => note.id === parseInt(this.props.match.params.id)
     );
     if (!note) {
       return <p className="noteError">NOTE NOT FOUND!!! </p>;

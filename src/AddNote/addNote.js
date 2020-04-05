@@ -13,13 +13,13 @@ class AddNote extends Component {
     const { name, content, folder } = e.target;
     const note = {
       name: name.value,
-      folderId: folder.value,
+      folderid: folder.value,
       content: content.value,
-      modified: new Date().toUTCString()
+    //  modified: new Date().toUTCString()
     };
-
+console.log(note);
     this.setState({ error: null });
-    fetch(`http://localhost/8000/api/notes`, {
+    fetch(`http://localhost:8000/api/notes`, {
       method: "POST",
       body: JSON.stringify(note),
       headers: {

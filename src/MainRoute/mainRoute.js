@@ -20,7 +20,8 @@ class MainRoute extends Component {
             throw error;
           });
         }
-        return res.json();
+      
+        return;
       })
       .then(data => {
         // call the callback when the request is successful

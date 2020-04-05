@@ -21,7 +21,7 @@ class NavFolder extends Component {
             throw error;
           });
         }
-        return res.json();
+        return;
       })
       .then(data => {
         // call the callback when the request is successful
@@ -45,8 +45,10 @@ class NavFolder extends Component {
 }*/
 
   render() {
+    console.log(this.props.match.params.id);
     const folder = this.context.folders.find(
-      folder => folder.id === this.props.match.params.id
+
+      folder => folder.id === parseInt(this.props.match.params.id)
     );
     console.log(folder);
     if (!folder) {
@@ -54,7 +56,7 @@ class NavFolder extends Component {
     }
 
     const note = this.context.notes.find(
-      note => note.folderId === this.props.match.params.id
+      note => note.folderid === parseInt(this.props.match.params.id)
     );
     if (!note) {
       return (
@@ -74,7 +76,7 @@ class NavFolder extends Component {
 
     const notes = this.context.notes
       .filter(note => {
-        return note.folderId === this.props.match.params.id;
+        return note.folderid === parseInt(this.props.match.params.id);
       })
       .map(note => {
         return (
