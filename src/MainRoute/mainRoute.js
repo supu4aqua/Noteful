@@ -28,6 +28,7 @@ class MainRoute extends Component {
         // call the callback when the request is successful
         // this is where the App component can remove it from state
         callback(noteId);
+        this.props.history.push("/");
       })
 
       .catch(error => {
