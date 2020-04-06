@@ -4,5 +4,5 @@ import './index.css';
 import App from './App/App'
 import { BrowserRouter } from 'react-router-dom'
 
-
+//console.log(process.env)
 ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'));

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./addNote.css";
 import Context from "../Context";
+import { API_URL } from "../config.js";
 
 //Component to add a note - Renders a form
 class AddNote extends Component {
@@ -19,7 +20,8 @@ class AddNote extends Component {
     };
 console.log(note);
     this.setState({ error: null });
-    fetch(`http://localhost:8000/api/notes`, {
+  //  fetch(`http://localhost:8000/api/notes`, {
+  fetch(`${API_URL}/api/notes`, {
       method: "POST",
       body: JSON.stringify(note),
       headers: {
