@@ -10,7 +10,7 @@ class MainRoute extends Component {
   static contextType = Context;
   //When delete note button is clciked
   deleteNoteRequest(noteId, callback) {
-    fetch(config.API_URL + `/notes/${noteId}`, {
+    fetch(config.API_URL + `/api/notes/${noteId}`, {
       method: "DELETE"
     })
       .then(res => {

@@ -12,7 +12,7 @@ class NavFolder extends Component {
   //Delete note when button is clicked
   deleteNoteRequest(noteId, callback) {
   //  fetch(`http://localhost:8000/api/notes/${noteId}`, {
-  fetch(config.API_URL + `/notes/${noteId}`, {
+  fetch(config.API_URL + `/api/notes/${noteId}`, {
       method: "DELETE"
     })
       .then(res => {
@@ -47,7 +47,7 @@ class NavFolder extends Component {
 }*/
 
   render() {
-    console.log(this.props.match.params.id);
+    console.log(parseInt(this.props.match.params.id));
     const folder = this.context.folders.find(
 
       folder => folder.id === parseInt(this.props.match.params.id)
