@@ -47,12 +47,12 @@ class NavFolder extends Component {
 }*/
 
   render() {
-    console.log(parseInt(this.props.match.params.id));
+  //  console.log(parseInt(this.props.match.params.id));
     const folder = this.context.folders.find(
 
       folder => folder.id === parseInt(this.props.match.params.id)
     );
-    console.log(folder);
+  //  console.log(folder);
     if (!folder) {
       return <p className="folderError">FOLDER NOT FOUND!!! </p>;
     }
