@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import "./navFolder.css";
 import NavBar from "../NavBar/navBar";
 import Context from "../Context";
-
+//import { API_URL } from "./src/config.js";
+import config from '../config';
 //Renders notes that belongs to selected fodler
 class NavFolder extends Component {
   static contextType = Context;
@@ -11,7 +12,7 @@ class NavFolder extends Component {
   //Delete note when button is clicked
   deleteNoteRequest(noteId, callback) {
   //  fetch(`http://localhost:8000/api/notes/${noteId}`, {
-  fetch(`${API_ENDPOINT}notes/${noteId}`, {
+  fetch(config.API_URL + `/notes/${noteId}`, {
       method: "DELETE"
     })
       .then(res => {

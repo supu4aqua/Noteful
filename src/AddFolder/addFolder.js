@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "./addFolder.css";
 import Context from "../Context";
-import { API_URL } from "../config.js";
-
+//import { API_URL } from "../src/config";
+import config from '../config';
 // Component to add a folder - Renders a form
 class AddFolder extends Component {
   static contextType = Context;
@@ -17,7 +17,7 @@ class AddFolder extends Component {
 
     this.setState({ error: null });
   //  fetch(`http://localhost:8000/api/folders`, {
-  fetch(`${API_URL}/api/folders`, {
+  fetch(config.API_URL + `/api/folders`, {
       method: "POST",
       body: JSON.stringify(folder),
       headers: {

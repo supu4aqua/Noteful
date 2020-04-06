@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import "./navNote.css";
 import Context from "../Context";
-import { API_URL } from "../config.js";
-
+//import { API_URL } from "./src/config.js";
+import config from '../config';
 //Renders details of selected note
 class NavNote extends Component {
   static contextType = Context;
 
   deleteNoteRequest(noteId, callback) {
   //  fetch(`http://localhost:8000/api/notes/${noteId}`, {
-    fetch(`${API_URL}/api/notes/${noteId}`, {
+    fetch(config.API_URL + `/api/notes/${noteId}`, {
       method: "DELETE"
     })
       .then(res => {

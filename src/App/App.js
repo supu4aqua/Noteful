@@ -10,8 +10,8 @@ import Context from "../Context";
 import AddFolder from "../AddFolder/addFolder";
 import AddNote from "../AddNote/addNote";
 import ErrorBoundary from "../ErrorBoundary";
-import { API_URL } from "../config.js";
-
+//import { API_URL } from "./src/config.js";
+import config from '../config';
 class App extends Component {
   state = {
     notes: [],
@@ -20,7 +20,7 @@ class App extends Component {
   //To fetch data from local host - {stateData} will either be 'notes' or 'folders'
   fetchData(stateData) {
     //const url = `http://localhost:8000/api/${stateData}`;
-    const url = `${API_URL}/api/${stateData}`;
+    const url = config.API_URL + `/api/${stateData}`;
 
     fetch(url)
       .then(res => {

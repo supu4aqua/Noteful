@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 import "./mainRoute.css";
 import NavBar from "../NavBar/navBar";
 import Context from "../Context";
-import { API_URL } from "../config.js";
-
+//import { API_URL } from "./src/config.js";
+import config from '../config';
 //Renders a lost of all the notes on the main page
 class MainRoute extends Component {
   static contextType = Context;
   //When delete note button is clciked
   deleteNoteRequest(noteId, callback) {
-    fetch(`${API_ENDPOINT}/notes/${noteId}`, {
+    fetch(config.API_URL + `/notes/${noteId}`, {
       method: "DELETE"
     })
       .then(res => {
